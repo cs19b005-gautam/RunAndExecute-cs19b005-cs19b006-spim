@@ -1102,6 +1102,11 @@ int main() {
 		}
 		program_counter = 0;
 		int cache_misses = 0;
+		int L1_cache_miss = 0;
+		int L1_accesses = 0;
+		int L2_cache_miss = 0;
+		int L2_accesses = 0;
+		int accesses = 0;
 		int num_stalls = 0;
 		int n;
 		int end_cycle = 0;
@@ -1613,13 +1618,17 @@ int main() {
 
 			if(L1_hit){
 				run_cycles = L1_access_latency;
+				L1_accesses++;
 			}
 			else if(L2_hit){
 				run_cycles = L1_access_latency + L2_access_latency;
+				L2_accesses++;
+				L1_cache_miss++;
 			}
 			else if(!L1_hit && !L2_hit){
 				run_cycles = L1_access_latency + L2_access_latency + memory_access_latency;
 				cache_misses++;
+				L2_cache_miss++;
 			}
 
 
@@ -1696,6 +1705,12 @@ int main() {
 		cout << "Number of stalls = " << num_stalls << endl << endl;
 		float floa_instructs = (float)(number_of_performed_instructs);
 		float total_cycles = (float)(end_cycle);
+		float flo_L1_cache_miss = (float)(L1_cache_miss);
+		float flo_L1_accesses = (float)(L1_accesses);
+		cout << "Miss rate of cache L1 = " << flo_L1_cache_miss/flo_L1_accesses << endl;
+		float flo_L2_cache_miss = (float)(L2_cache_miss);
+		float flo_L2_accesses = (float)(L2_accesses);
+		cout << "Miss rate of cache L2 = " << flo_L2_cache_miss/flo_L2_accesses << endl;
 		cout << "IPC (Instructions Per Cycle)  =  " << floa_instructs/total_cycles << endl << endl;
         cout << "LIST OF STALL INSTRUCTIONS :" << endl<<"(Because of the loops you may see the same instruction repeated but you can see that the" << endl << " instruction is not shown twice by seeing but which nth instruction performed can bee seen)"<< endl;
         cout << endl << "nth stall instruction\t" << "instruction" << endl;
