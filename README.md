@@ -60,6 +60,7 @@ At last we will be printing number of misses, number of stalls and instructction
 
 and whenver we found any miss in L1 we increment L1_cache_accesses and at every access in L1_cache_misses we calculate cache miss rate using 
 L1_miss_rate = L1_cache_accesses/L1_cache_misses;
+
 and same has to be done in case of L2
 
 this is how we have done
