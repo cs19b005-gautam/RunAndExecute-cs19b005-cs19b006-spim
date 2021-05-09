@@ -38,5 +38,4 @@ exit:
 	
 terminate:
 	li	$v0, 10
-	syscall
-	
+	syscall	
