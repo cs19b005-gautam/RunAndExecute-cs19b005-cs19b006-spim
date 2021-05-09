@@ -9,11 +9,6 @@
 //4.Memory
 //5.Write Back
 
-/*the total working of MIPS has been changed compared to last time as last time all stages were done like one but now as the
- *stages are necessary here every result from respective stages has to be taken in order for doing that we have had to add some
- *new functions for code and change some code in main had gone through changes and old functions were not removed because we
- *wanted to make this simulator supporting umpipelined, data_forwarding_pipelined and data_not_forwarding_pipelined due to lack
- *of time it was not done*/
 
 #include <bits/stdc++.h>
 
